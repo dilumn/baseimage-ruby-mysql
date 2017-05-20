@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.19
+FROM phusion/baseimage:0.9.20
 
 MAINTAINER Samuel Chandra <sam@buuuk.com>
 
@@ -36,10 +36,10 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 
 # install ruby
 RUN mkdir -p tmp && cd /tmp && \
-  wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz && \
-  tar -xvzf ruby-2.3.3.tar.gz && cd ruby-2.3.3 && \
+  wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz && \
+  tar -xvzf ruby-2.3.4.tar.gz && cd ruby-2.3.4 && \
   ./configure --disable-install-doc && make && make install && \
-  rm -rf /tmp/ruby-2.3.3
+  rm -rf /tmp/ruby-2.3.4
 
 RUN gem install --no-rdoc --no-ri bundler
 
