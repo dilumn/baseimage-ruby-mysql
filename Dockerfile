@@ -20,9 +20,15 @@ RUN apt-get update && apt-get install -y \
   libgdbm3 \
   libgdbm-dev \
   libmysqlclient-dev \
+  libcurl3 \
+  libcurl3-gnutls \
+  libcurl4-openssl-dev \
+  libmagickwand-dev \
   ntp \
+  imagemagick \
+  redis-server \
   && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+  && rm -rf /var/lib/apt/lists/* /var/tmp/*
 
 # setup time servers
 RUN echo 'Asia/Singapore' > /etc/timezone
@@ -30,10 +36,10 @@ RUN dpkg-reconfigure -f noninteractive tzdata
 
 # install ruby
 RUN mkdir -p tmp && cd /tmp && \
-  wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz && \
-  tar -xvzf ruby-2.3.1.tar.gz && cd ruby-2.3.1 && \
+  wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.3.tar.gz && \
+  tar -xvzf ruby-2.3.3.tar.gz && cd ruby-2.3.3 && \
   ./configure --disable-install-doc && make && make install && \
-  rm -rf /tmp/ruby-2.3.1
+  rm -rf /tmp/ruby-2.3.3
 
 RUN gem install --no-rdoc --no-ri bundler
 
