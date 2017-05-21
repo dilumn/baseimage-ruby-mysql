@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.20
+FROM phusion/baseimage:0.9.22
 
 MAINTAINER Samuel Chandra <sam@buuuk.com>
 
@@ -25,21 +25,22 @@ RUN apt-get update && apt-get install -y \
   libcurl4-openssl-dev \
   libmagickwand-dev \
   ntp \
+  tzdata \
   imagemagick \
   redis-server \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /var/tmp/*
 
 # setup time servers
-RUN echo 'Asia/Singapore' > /etc/timezone
-RUN dpkg-reconfigure -f noninteractive tzdata
+RUN rm -f /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Asia/Singapore /etc/localtime
 
 # install ruby
 RUN mkdir -p tmp && cd /tmp && \
-  wget https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.4.tar.gz && \
-  tar -xvzf ruby-2.3.4.tar.gz && cd ruby-2.3.4 && \
+  wget https://cache.ruby-lang.org/pub/ruby/2.4/ruby-2.4.1.tar.gz && \
+  tar -xvzf ruby-2.4.1.tar.gz && cd ruby-2.4.1 && \
   ./configure --disable-install-doc && make && make install && \
-  rm -rf /tmp/ruby-2.3.4
+  rm -rf /tmp/ruby-2.4.1
 
 RUN gem install --no-rdoc --no-ri bundler
 
