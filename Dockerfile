@@ -1,6 +1,6 @@
 FROM phusion/baseimage:0.9.22
 
-MAINTAINER Samuel Chandra <sam@buuuk.com>
+MAINTAINER Dilum Navanjana <dilumn@bbytes.sg>
 
 # install all our usual dependencies, mostly specced for ruby, followed by clean up
 RUN apt-get update && apt-get install -y \
@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y \
 
 # setup time servers
 RUN rm -f /etc/localtime
-RUN ln -s /usr/share/zoneinfo/Asia/Singapore /etc/localtime
+RUN ln -s /usr/share/zoneinfo/Asia/Japan /etc/localtime
 
 # install ruby
 RUN mkdir -p tmp && cd /tmp && \
