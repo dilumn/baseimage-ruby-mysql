@@ -1,4 +1,4 @@
-# baseimage-ruby-mysql
+#baseimage-ruby-mysql
 Docker baseimage with latest ruby and mysql client
 
 The following packages has been added for convenience:
@@ -10,7 +10,4 @@ The following packages has been added for convenience:
 - imagemagick
 - redis-server
 
-This docker images is used for ruby application development 
-hence its geared for it. The following rubygem has also 
-been added:
-- bundler
+Included `bundler` gem in the image as well.
